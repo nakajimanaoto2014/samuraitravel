@@ -10,7 +10,7 @@
 		
 		<title>民宿詳細</title>
 	</head>
-	<div>
+	<body>
 		<div class="samuraitravel-wrapper">
 			<div th:replace="~{fragment :: header}"></div>
 				
@@ -226,11 +226,11 @@
 									<div class="text-center mb-4" th:if="${totalReviewCount > 6}">
 										<a th:href="@{/houses/__${house.id}__/reviews}">すべてのレビューを見る</a>
 									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</main>
+				</main>
 				
 				<div th:replace="~{fragment :: footer}"></div>
 				
