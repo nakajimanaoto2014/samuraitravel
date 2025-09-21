@@ -49,7 +49,6 @@ public class HouseController {
 						 Pageable pageable,
 						 Model model)
 	{
-		System.out.println("test1");
 		
 		Page<House>housePage;
 		
@@ -107,7 +106,6 @@ public class HouseController {
 					   @AuthenticationPrincipal  UserDetailsImpl userDetailsImpl,
 					   							 RedirectAttributes redirectAttributes,
 												 Model model) {
-		System.out.println("test2");
 		
 		Optional<House> optionalHouse = houseService.findHouseById(id);
 		
@@ -121,7 +119,7 @@ public class HouseController {
 		boolean hasUserAlreadyReviewed = false;
 		Favorite favorite = null;
 		boolean isFavorite = false;
-		System.out.println("test4");
+		
 		if(userDetailsImpl != null) {
 			User user = userDetailsImpl.getUser();
 			hasUserAlreadyReviewed = reviewService.hasUserAlreadyReviewed(house, user);
