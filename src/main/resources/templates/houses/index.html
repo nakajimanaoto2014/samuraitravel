@@ -157,7 +157,7 @@
 						
 						<div class="col">
 							
-							<div th:text="${errorMessage}" class="alert alert-danger">
+							<div th:if="${errorMessage}" class="alert alert-danger">
 								<span th:text="${errorMessage}"></span>
 							</div>
 							
