@@ -84,7 +84,7 @@ public class ReviewController {
 		model.addAttribute("house" , house);
 		model.addAttribute("reviewRegisterForm" , new ReviewRegisterForm());
 		
-		return "reviews:/register";
+		return "reviews/register";
 	}
 	
 	@PostMapping("/create")
@@ -144,7 +144,7 @@ public class ReviewController {
 		Review review = optionalReview.get();
 		User user = userDetailsImpl.getUser();
 		
-		if(!review.getHouse().equals(house) || !review. getUser().equals(user)) {
+		if(!review.getHouse().getId().equals(house.getId()) || !review. getUser().getId().equals(user.getId())) {
 			redirectAttributes.addFlashAttribute("errorMessage" , "不正なアクセスです。");
 			
 			return "redirect:/houses/{houseId}";
@@ -181,7 +181,7 @@ public class ReviewController {
 			Review review = optionalReview.get();
 			User user = userDetailsImpl.getUser();
 			
-			if(!review.getHouse().equals(house) || !review.getUser().equals(user)){
+			if(!review.getHouse().getId().equals(house.getId()) || !review.getUser().getId().equals(user.getId())){
 				redirectAttributes.addFlashAttribute("errorMessage" , 	"不正なアクセスです");
 				
 				return "redirect:/houses/{houseId}";
@@ -221,14 +221,14 @@ public class ReviewController {
 		Review review = optionalReview.get();
 		User user = userDetailsImpl.getUser();
 		
-		if(!review.getHouse().equals(house) || !review.getUser().equals(user)){
+		if(!review.getHouse().getId().equals(house.getId()) || !review.getUser().getId().equals(user.getId())){
 			redirectAttributes.addFlashAttribute("errorMessage" , "不正なアクセスです。");
 			
 			return "redirect:/houses/{houseId}";
 		}
 		
 		reviewService.deleteReview(review);
-		redirectAttributes.addFlashAttribute("successMessage" , "レビューを削除しました.");
+		redirectAttributes.addFlashAttribute("successMessage" , "レビューを削除しました。");
 		
 		return "redirect:/houses/{houseId}";
 	}

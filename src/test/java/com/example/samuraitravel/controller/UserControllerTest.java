@@ -47,7 +47,6 @@ public class UserControllerTest {
 	}
 	
 	@Test
-	@WithUserDetails("taro.samurai@example.com")
 	public void 未ログイン済みの場合は会員用の会員編集ページが正しく表示される()
 			throws Exception{
 		
@@ -63,7 +62,7 @@ public class UserControllerTest {
 		
 		mockMvc.perform(get("/user/edit"))
 		   .andExpect(status().isOk())
-		   .andExpect(view().name("user/esit"));
+		   .andExpect(view().name("user/edit"));
 	}
 	
 	@Test
@@ -107,6 +106,6 @@ public class UserControllerTest {
 	assertThat(user.getPostalCode()).isEqualTo("000-0000");
 	assertThat(user.getAddress()).isEqualTo("テスト住所");
 	assertThat(user.getPhoneNumber()).isEqualTo("000-000-000");
-	assertThat(user.getEmail()).isEqualTo("test@exmple.com");
+	assertThat(user.getEmail()).isEqualTo("test@example.com");
 	}
 }

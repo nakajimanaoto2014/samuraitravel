@@ -69,7 +69,7 @@ public class AdminHouseControllerTest {
 		
 		mockMvc.perform(get("/admin/houses/1"))
 			   .andExpect(status().is3xxRedirection())
-			   .andExpect(redirectedUrl("http://loclhost/login"));		
+			   .andExpect(redirectedUrl("http://localhost/login"));		
 	}
 	
 	@Test
@@ -313,7 +313,7 @@ public class AdminHouseControllerTest {
 	House house = optionalHouse.get();
 	assertThat(house.getName()).isEqualTo("SAMURAIの宿");
 	assertThat(house.getDescription()).
-	isEqualTo("最寄りの駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。");
+	isEqualTo("最寄り駅から徒歩10分。自然豊かで閑静な場所にあります。長期滞在も可能です。");
 	assertThat(house.getPrice()).isEqualTo(6000);
 	assertThat(house.getCapacity()).isEqualTo(2);
 	assertThat(house.getPostalCode()).isEqualTo("073-0145");
@@ -327,8 +327,8 @@ public class AdminHouseControllerTest {
 	public void 一般ユーザーとしてログイン済みの場合は民宿を更新せずに403エラーが発生する()
 			throws Exception{
 		
-		//テスト用に画像ファイルデータを準備する
-		Path filePath = Paths.get("src/main/resources/storage/house01.jpg");
+		//テスト用の画像ファイルデータを準備する
+		Path filePath = Paths.get("src/main/resources/static/storage/house01.jpg");
 		String fileName = filePath.getFileName().toString();
 		String fileType = Files.probeContentType(filePath);
 		byte[] fileBytes = Files.readAllBytes(filePath);

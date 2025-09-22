@@ -140,7 +140,7 @@ public class HouseController {
 		model.addAttribute("totalReviewCount" , totalReviewCount);
 		model.addAttribute("favorite" , favorite);
 		model.addAttribute("isFavorite" , isFavorite);
-		
+	
 		return "houses/show";
 	}
 }
