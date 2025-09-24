@@ -45,7 +45,7 @@ public class StripeWebhookController {
 			stripeService.processSessionCompleted(event);
 		}
 		
-		return new ResponseEntity<>("Success" , HttpStatus.OK);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
 	}
 
 }
