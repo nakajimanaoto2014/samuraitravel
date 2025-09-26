@@ -3,17 +3,17 @@ package com.example.samuraitravel.controller;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.samuraitravel.service.StripeService;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.model.Event;
 import com.stripe.net.Webhook;
 
-@Controller
+@RestController
 public class StripeWebhookController {
 	private final StripeService stripeService;
 	
@@ -36,10 +36,16 @@ public class StripeWebhookController {
 		}
 		
 		catch(SignatureVerificationException e){
-			System.out.println("Webhookの署名シークレットが正しくありません。");
-			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+		    System.out.println("Webhookの署名シークレットが正しくありません。");
+		    System.out.println("sigHeader: " + sigHeader);
+		    System.out.println("webhookSecret: " + webhookSecret);
+		    System.out.println("payload length: " + payload.length());
+		    e.printStackTrace();
+		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
+
+		
+		
 		
 		if("checkout.session.completed".equals(event.getType())) {
 			stripeService.processSessionCompleted(event);
